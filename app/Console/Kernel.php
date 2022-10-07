@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,14 +17,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+         $schedule->call(function () {
+             User::where( [['number_verified_at' , '=', null] , ['created_at', '<',Carbon::parse('-10 minute')]] )->get()->each->delete();
+         })->everyMinute();
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
+
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
