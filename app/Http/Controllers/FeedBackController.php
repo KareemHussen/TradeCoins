@@ -9,6 +9,12 @@ class FeedBackController extends Controller
 {
 
 
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+        $this->middleware('verifiedNumber');
+    }
+
     public function getFeedBacksOfUser(Request $request)
     {
 

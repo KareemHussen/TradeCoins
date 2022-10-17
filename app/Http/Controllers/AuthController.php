@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth:api', ['except' => ['login','register' , 'forgetPassword' , 'checkForgetPasswordOtp']]);
-//        $this->middleware('verifiedNumber', ['except' => ['login','register' , 'sendPhoneOtp' , 'checkPhoneOtp' , 'forgetPassword' , 'checkForgetPasswordOtp']]);
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login','register' , 'forgetPassword' , 'checkForgetPasswordOtp']]);
+        $this->middleware('verifiedNumber', ['except' => ['login','register' , 'sendPhoneOtp' , 'checkPhoneOtp' , 'forgetPassword' , 'checkForgetPasswordOtp']]);
+    }
 
     public function login(Request $request)
     {

@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     {
          $schedule->call(function () {
              User::where( [['number_verified_at' , '=', null] , ['created_at', '<',Carbon::parse('-10 minute')]] )->get()->each->delete();
-         })->everyMinute();
+         })->cron('* * * * *');
     }
 
 
